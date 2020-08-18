@@ -9,11 +9,18 @@
     <name>day-cloud</name>
     <description>Day project for Spring Boot</description>
     <!--
+    搭建eureka服务端和客户端参考：
         https://www.maiyewang.com/archives/88058
         https://blog.csdn.net/wjg8209/article/details/95090702
         https://blog.csdn.net/qq_43659751/article/details/104860173
         https://blog.csdn.net/qq32933432/article/details/89375630
         https://juejin.im/post/6844904162635825166
+    搭建springboot+gateway参考：
+        https://www.cnblogs.com/duanxz/p/11883936.html
+
+    搭建springboot+mybatis-plus参考：
+
+
     -->
     <properties>
         <java.version>1.8</java.version>
@@ -23,8 +30,11 @@
     </properties>
 
     <modules>
+        <module>day-common</module>
         <module>day-eureka</module>
         <module>day-gateway</module>
+        <module>day-today</module>
+        <module>day-tomorrow</module>
     </modules>
 
     <dependencies>
