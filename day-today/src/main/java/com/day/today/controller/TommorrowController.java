@@ -1,4 +1,4 @@
-package com.day.tomorrow.controller;
+package com.day.today.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

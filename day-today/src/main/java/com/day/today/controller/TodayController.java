@@ -27,7 +27,6 @@ import java.net.URLEncoder;
 @Api(tags = "今天的控制层信息")
 @RequestMapping("/today")
 public class TodayController {
-
     private static final Logger log = LoggerFactory.getLogger(TodayController.class);
     private static final int BUFFER = 1024 * 8;
 
@@ -78,13 +77,6 @@ public class TodayController {
 
 
     }
-
-
-
-
-
-
-
 
 
 

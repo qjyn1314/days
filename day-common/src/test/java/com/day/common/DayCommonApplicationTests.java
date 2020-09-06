@@ -1,10 +1,10 @@
-package com.day.tomorrow;
+package com.day.common;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DayTomorrowApplicationTests {
+class DayCommonApplicationTests {
 
     @Test
     void contextLoads() {

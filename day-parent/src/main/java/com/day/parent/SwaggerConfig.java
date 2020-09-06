@@ -1,4 +1,4 @@
-package com.day.commonfore.config;
+package com.day.parent;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  * <p>
- * Explain:工程中的swagger文档配置
+ * explain:工程中的swagger文档配置
  * </p >
  *
  * @author wangjunming
@@ -38,6 +38,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
      * @author wangjunming
      * @since 2020/1/17 10:59
      */
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
@@ -49,7 +50,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     public Docket createRestApi() {
         ParameterBuilder tokenPar = new ParameterBuilder();
         List<Parameter> pars = new ArrayList<Parameter>();
-        tokenPar.name("X-Auth-Token").description("令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
+        tokenPar.name("AuthToken").description("请求令牌").modelRef(new ModelRef("string")).parameterType("header").required(false).build();
         pars.add(tokenPar.build());
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
@@ -63,10 +64,11 @@ public class SwaggerConfig implements WebMvcConfigurer {
     private ApiInfo apiInfo() {
         String licenseUrl = "http://%s:%s/swagger-ui.html";
         String address = "127.0.0.1";
+        final String port = DaysProperties.getPort();
         return new ApiInfoBuilder()
-                .title("称，个个棒棒哒~--RESTful APIS")
-                .description("称，个个棒棒哒~~搭建")
-                .licenseUrl(String.format(licenseUrl, address, "9051"))
+                .title("DAYS~--RESTFUL APIS")
+                .description("Mr.Wang~~搭建!!")
+                .licenseUrl(String.format(licenseUrl, address, port))
                 .version("1.0")
                 .build();
     }
