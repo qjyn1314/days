@@ -18,6 +18,8 @@
     <modules>
         <module>day-parent</module>
         <module>day-common</module>
+        <module>day-api</module>
+        <module>day-yesterday</module>
         <module>day-today</module>
     </modules>
 

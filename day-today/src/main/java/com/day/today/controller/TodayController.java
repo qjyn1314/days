@@ -1,7 +1,9 @@
 package com.day.today.controller;
 
+import com.day.api.provider.YesterdayProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,11 +73,14 @@ public class TodayController {
         }
     }
 
+
+    @DubboReference
+    private YesterdayProvider yesterdayProvider;
+
     @ApiOperation(value = "下载模板")
     @RequestMapping(value = "download", method = RequestMethod.POST)
-    public void download(String name, HttpServletResponse response) {
-
-
+    public String download(String name, HttpServletResponse response) {
+        return yesterdayProvider.getYesterDayTime();
     }
 
 

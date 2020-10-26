@@ -1,4 +1,4 @@
-package com.day.today;
+package com.day.yesterday;
 
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
@@ -8,10 +8,10 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDubbo
 @ComponentScan("com.day")
 @SpringBootApplication
-public class DayTodayApplication {
+public class DayYesterdayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DayTodayApplication.class, args);
+        SpringApplication.run(DayYesterdayApplication.class, args);
     }
 
 }
