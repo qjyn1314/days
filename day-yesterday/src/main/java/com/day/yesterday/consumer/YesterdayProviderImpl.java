@@ -1,6 +1,7 @@
 package com.day.yesterday.consumer;
 
-import com.day.api.provider.YesterdayProvider;
+import com.day.api.config.DubboNacosGroup;
+import com.day.api.provider.yesterday.YesterdayProvider;
 import org.apache.dubbo.config.annotation.DubboService;
 
 import java.text.SimpleDateFormat;
@@ -14,7 +15,7 @@ import java.util.Date;
  * @author wangjunming
  * @since 2020/10/23 17:23
  */
-@DubboService
+@DubboService(group = DubboNacosGroup.YESTERDAY_DUBBO_NACOS)
 public class YesterdayProviderImpl implements YesterdayProvider {
 
     @Override

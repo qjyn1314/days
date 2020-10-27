@@ -1,6 +1,7 @@
 package com.day.today.controller;
 
-import com.day.api.provider.YesterdayProvider;
+import com.day.api.config.DubboNacosGroup;
+import com.day.api.provider.yesterday.YesterdayProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -74,7 +75,7 @@ public class TodayController {
     }
 
 
-    @DubboReference
+    @DubboReference(group = DubboNacosGroup.YESTERDAY_DUBBO_NACOS)
     private YesterdayProvider yesterdayProvider;
 
     @ApiOperation(value = "下载模板")

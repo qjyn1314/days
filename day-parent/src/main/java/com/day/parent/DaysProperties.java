@@ -22,6 +22,7 @@ import javax.annotation.PostConstruct;
 public class DaysProperties {
 
     private static final String SERVER_PORT = "server.port";
+    private static final String APPLICATION_NAME = "spring.application.name";
 
     @Autowired
     private Environment environment;
@@ -34,6 +35,10 @@ public class DaysProperties {
 
     public static String getPort() {
         return env.getProperty(SERVER_PORT);
+    }
+
+    public static String getApplicationName() {
+        return env.getProperty(APPLICATION_NAME);
     }
 
 }

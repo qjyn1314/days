@@ -1,4 +1,4 @@
-package com.day.api.provider;
+package com.day.api.provider.yesterday;
 
 /**
  * <p>

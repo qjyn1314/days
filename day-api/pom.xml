@@ -15,6 +15,8 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -23,18 +25,31 @@
             <artifactId>day-common</artifactId>
             <version>1.0.0</version>
         </dependency>
-        <!--springboot+dubbo-start-->
+        <!--springboot+dubbo+nacos-start-->
+        <!--参考：
+            https://blog.csdn.net/lwb314/article/details/108222433
+            主要参考与：
+            https://blog.csdn.net/lwb314/article/details/108233863
+            其中nacos的异常解决：
+            https://blog.csdn.net/a656548429/article/details/89312223
+            nacos启动时单机模式启动就OK了,    startup.cmd -m standalone
+            启动服务的时候发生异常以及解决方案：（但未解决掉）
+            https://blog.csdn.net/joyce0323/article/details/83543243
+        -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>2.7.7</version>
+            <version>${dubbo.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.curator</groupId>
-            <artifactId>curator-recipes</artifactId>
-            <version>4.2.0</version>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!--springboot+dubbo-end-->
+        <!--springboot+dubbo+nacos-end-->
     </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
 
 </project>

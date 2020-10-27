@@ -1,4 +1,4 @@
-package com.day.api.provider;
+package com.day.api.provider.today;
 
 /**
  * <p>
@@ -9,5 +9,7 @@ package com.day.api.provider;
  * @since 2020/10/23 17:21
  */
 public interface TodayProvider {
+
+    String getTodayDataTime();
 
 }
