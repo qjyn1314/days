@@ -30,10 +30,10 @@ import javax.sql.DataSource;
 @EnableEncryptableProperties
 public class DataSourceConfig {
 
-    @Bean
-    public DataSourceProxy dataSourceProxy(DataSource dataSource) {
-        return new DataSourceProxy(dataSource);
-    }
+//    @Bean
+//    public DataSourceProxy dataSourceProxy(DataSource dataSource) {
+//        return new DataSourceProxy(dataSource);
+//    }
 
     /**
      * 在classpath后面的 * 必不可少，缺少型号的话后面的通配符不起作用。**表示可以表示任意多级目录。
@@ -50,7 +50,7 @@ public class DataSourceConfig {
      * @since 2020/10/28 15:47
      */
     @Bean
-    public MybatisSqlSessionFactoryBean mysqlSessionFactory(DataSourceProxy dataSource) throws Exception {
+    public MybatisSqlSessionFactoryBean mysqlSessionFactory(DataSource dataSource) throws Exception {
         MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
