@@ -42,6 +42,11 @@
             <version>${druid.version}</version>
         </dependency>
         <!--mysql-end-->
+        <!--分布式事务解决方案-->
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-all</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -7,6 +7,9 @@ import com.day.common.base.QueryRequest;
 import com.day.today.persistence.entity.Order;
 import com.day.today.persistence.mapper.OrderMapper;
 import com.day.today.persistence.service.IOrderService;
+import io.seata.core.context.RootContext;
+import io.seata.spring.annotation.GlobalTransactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author wangjunming
  * @since 2020-10-28 10:25:01
  */
+@Slf4j
 @Service
 public class OrderServiceImpl implements IOrderService {
 
@@ -59,9 +63,15 @@ public class OrderServiceImpl implements IOrderService {
     */
     @Override
     @Transactional(rollbackFor = Exception.class)
+//    @GlobalTransactional(rollbackFor = Exception.class)
     public boolean save(Order order) {
+//        log.info("分布式事务ID是--1：{}", RootContext.getXID());
         //--TODO 做一些初始化动作
-        return orderMapper.insert(order)>0;
+        final boolean b = orderMapper.insert(order) > 0;
+//        log.info("分布式事务ID是--2：{}", RootContext.getXID());
+        int i = 12/0;
+//        log.info("分布式事务ID是--3：{}", RootContext.getXID());
+        return b;
     }
 
    /**

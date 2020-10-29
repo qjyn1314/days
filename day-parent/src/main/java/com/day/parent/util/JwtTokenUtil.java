@@ -1,4 +1,4 @@
-package com.day.common.jwt;
+package com.day.parent.util;
 
 import cn.hutool.core.util.StrUtil;
 import io.jsonwebtoken.*;
