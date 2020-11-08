@@ -3,6 +3,9 @@ package com.day.today.persistence.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.day.api.config.DubboNacosGroup;
+import com.day.api.entitys.AccountApiEntity;
+import com.day.api.provider.yesterday.YesterdayProvider;
 import com.day.common.base.QueryRequest;
 import com.day.today.persistence.entity.Order;
 import com.day.today.persistence.mapper.OrderMapper;
@@ -10,6 +13,7 @@ import com.day.today.persistence.service.IOrderService;
 import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +31,11 @@ public class OrderServiceImpl implements IOrderService {
     @Autowired
     private OrderMapper orderMapper;
 
-   /**
+    @DubboReference(group = DubboNacosGroup.YESTERDAY_DUBBO_NACOS)
+    private YesterdayProvider yesterdayProvider;
+
+
+    /**
     * 分页列表
     *
     * @param queryRequest
@@ -69,7 +77,7 @@ public class OrderServiceImpl implements IOrderService {
         //--TODO 做一些初始化动作
         final boolean b = orderMapper.insert(order) > 0;
 //        log.info("分布式事务ID是--2：{}", RootContext.getXID());
-        int i = 12/0;
+//        int i = 12/0;
 //        log.info("分布式事务ID是--3：{}", RootContext.getXID());
         return b;
     }
@@ -100,6 +108,39 @@ public class OrderServiceImpl implements IOrderService {
     LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
         //--TODO 初始化查询条件
         return orderMapper.selectOne(queryWrapper);
+    }
+
+    /**
+     * 用于测试分布式事务功能
+     *
+     * @param order
+     * @author wangjunming
+     * @since 2020/11/8 14:46
+     */
+    @Override
+    @GlobalTransactional(rollbackFor = Exception.class)
+    public boolean saveOrder(Order order) {
+        log.info("开始创建订单");
+        final boolean save = save(order);
+        boolean updataAmount = false;
+        if(save){
+            log.info("完成创建订单");
+            log.info("开始扣减余额");
+            AccountApiEntity accountApiEntity = new AccountApiEntity();
+            accountApiEntity.setUserId(order.getUserId());
+            accountApiEntity.setAmount(order.getAmount());
+            updataAmount = yesterdayProvider.updataAmountByUserId(accountApiEntity);
+            log.info("完成扣减余额");
+        }
+        log.info("开始更新订单状态");
+//        int i = 12/0;
+        boolean update = false;
+        if(updataAmount){
+            order.setStatus(Integer.valueOf("1"));
+            update = update(order);
+            log.info("完成更新订单状态");
+        }
+        return save && updataAmount && update;
     }
 
 

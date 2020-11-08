@@ -7,6 +7,9 @@ import com.day.common.base.QueryRequest;
 import com.day.yesterday.persistence.entity.Account;
 import com.day.yesterday.persistence.mapper.AccountMapper;
 import com.day.yesterday.persistence.service.IAccountService;
+import io.seata.spring.annotation.GlobalTransactional;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author wangjunming
  * @since 2020-10-28 10:29:08
  */
+@Slf4j
 @Service
 public class AccountServiceImpl implements IAccountService {
 
@@ -89,7 +93,36 @@ public class AccountServiceImpl implements IAccountService {
     public Account selOne(Account account) {
     LambdaQueryWrapper<Account> queryWrapper = new LambdaQueryWrapper<>();
         //--TODO 初始化查询条件
+        if(StringUtils.isNotBlank(account.getUserId())){
+            queryWrapper.eq(Account::getUserId,account.getUserId());
+        }
         return accountMapper.selectOne(queryWrapper);
+    }
+
+    /**
+     * 用于测试分布式事务，业务为根据用户ID扣减相应的余额
+     *
+     * @param account 扣减金额
+     * @author wangjunming
+     * @since 2020/11/8 14:18
+     */
+    @Override
+    @GlobalTransactional(rollbackFor = Exception.class)
+    public Account updataAmountByUserId(Account account){
+        final Account selOneAccount = selOne(account);
+        if (selOneAccount == null) {
+            log.error("余额不足！");
+            return null;
+        }
+        if (account.getAmount().compareTo(selOneAccount.getAmount()) > 0) {
+            log.error("余额不足！");
+            return null;
+        }
+        final double amountPoor = selOneAccount.getAmount() - account.getAmount();
+        selOneAccount.setAmount(amountPoor);
+        final boolean update = accountMapper.updateById(selOneAccount) > 0;
+        int i = 12/0;
+        return update ? selOneAccount : null;
     }
 
 

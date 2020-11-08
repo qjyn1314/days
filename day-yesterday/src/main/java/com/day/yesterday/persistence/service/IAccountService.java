@@ -46,4 +46,14 @@ public interface IAccountService {
     Account selOne(Account account);
 
 
+    /**
+     * 用于测试分布式事务，业务为根据用户ID扣减相应的余额
+     *
+     * @param account 扣减金额
+     * @author wangjunming
+     * @since 2020/11/8 14:18
+     */
+    Account updataAmountByUserId(Account account);
+
+
 }

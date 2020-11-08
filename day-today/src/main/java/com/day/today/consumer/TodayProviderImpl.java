@@ -2,7 +2,10 @@ package com.day.today.consumer;
 
 import com.day.api.config.DubboNacosGroup;
 import com.day.api.provider.today.TodayProvider;
+import com.day.today.persistence.service.IOrderService;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

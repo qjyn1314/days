@@ -2,11 +2,15 @@ package com.day.today.controller;
 
 import com.day.api.config.DubboNacosGroup;
 import com.day.api.provider.yesterday.YesterdayProvider;
+import com.day.common.base.JsonResult;
+import com.day.today.persistence.entity.Order;
+import com.day.today.persistence.service.IOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -78,6 +82,9 @@ public class TodayController {
     @DubboReference(group = DubboNacosGroup.YESTERDAY_DUBBO_NACOS)
     private YesterdayProvider yesterdayProvider;
 
+    @Autowired
+    private IOrderService orderService;
+
     @ApiOperation(value = "下载模板")
     @RequestMapping(value = "download", method = RequestMethod.POST)
     public String download(String name, HttpServletResponse response) {
@@ -85,6 +92,15 @@ public class TodayController {
     }
 
 
+
+    @ApiOperation(value = "测试分布式事务")
+    @RequestMapping(value = "testDistributedTransaction", method = RequestMethod.POST)
+    public JsonResult testDistributedTransaction() {
+        Order order = new Order();
+        order.setUserId("1001");
+        order.setAmount(300d);
+        return JsonResult.success(orderService.saveOrder(order));
+    }
 
 
 }

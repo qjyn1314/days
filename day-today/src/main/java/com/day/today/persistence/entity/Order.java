@@ -37,11 +37,11 @@ public class Order implements Serializable {
     private String commodityCode;
 
     /**
-     * 
+     * 状态
      */
     @ApiModelProperty(value = "")
-    @TableField("count")
-    private Integer count;
+    @TableField("status")
+    private Integer status;
 
     /**
      * 

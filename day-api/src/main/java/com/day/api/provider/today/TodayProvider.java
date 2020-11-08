@@ -12,4 +12,7 @@ public interface TodayProvider {
 
     String getTodayDataTime();
 
+
+
+
 }

@@ -46,4 +46,12 @@ public interface IOrderService {
     Order selOne(Order order);
 
 
+    /**
+     * 用于测试分布式事务功能
+     *
+     * @author wangjunming
+     * @since 2020/11/8 14:46
+     */
+    boolean saveOrder(Order order);
+
 }

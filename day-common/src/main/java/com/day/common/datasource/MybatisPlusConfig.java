@@ -1,6 +1,7 @@
 package com.day.common.datasource;
 
 import com.alibaba.druid.stat.DruidStatManagerFacade;
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,7 @@ import java.util.Map;
 @MapperScan(basePackages = {
         "com.day.*.persistence.mapper",
 }, annotationClass = Repository.class)
+@EnableEncryptableProperties
 public class MybatisPlusConfig {
 
     @PostConstruct
