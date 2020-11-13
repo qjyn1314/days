@@ -15,7 +15,7 @@ import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
  * @author wangjunming
  * @since 2020/10/29 10:26
  */
-public class JasyptUtil {
+public final class JasyptUtil {
 
     /**
      * Jasypt生成加密结果

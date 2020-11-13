@@ -12,16 +12,16 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "通用返回值对象")
 public class JsonResult<R> {
 
-    @ApiModelProperty(value = "是否成功",example = "")
+    @ApiModelProperty(value = "是否成功", example = "")
     private boolean success;
 
-    @ApiModelProperty(value = "是否成功的编码",example = "")
+    @ApiModelProperty(value = "是否成功的编码", example = "")
     private int code;
 
-    @ApiModelProperty(value = "返回的错误信息",example = "")
+    @ApiModelProperty(value = "返回的错误信息", example = "")
     private String msg;
 
-    @ApiModelProperty(value = "返回的数据",example = "")
+    @ApiModelProperty(value = "返回的数据", example = "")
     private R data;
 
     private static <R> JsonResult<R> defaultSuccess() {
@@ -40,7 +40,7 @@ public class JsonResult<R> {
         return defaultSuccess().setMsg(msg);
     }
 
-    public static <R> JsonResult<Object> successDataMsg(R data,String msg) {
+    public static <R> JsonResult<Object> successDataMsg(R data, String msg) {
         return defaultSuccess().setData(data).setMsg(msg);
     }
 

@@ -21,11 +21,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.day.common</groupId>
-            <artifactId>day-common</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.day.api</groupId>
             <artifactId>day-api</artifactId>
             <version>1.0.0</version>

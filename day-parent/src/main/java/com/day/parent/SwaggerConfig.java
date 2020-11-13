@@ -30,22 +30,7 @@ import java.util.List;
  */
 @Configuration
 @EnableOpenApi
-public class SwaggerConfig implements WebMvcConfigurer {
-
-    /**
-     * 添加swagger-ui的资源文件访问权限
-     *
-     * @param registry:
-     * @author wangjunming
-     * @since 2020/1/17 10:59
-     */
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("swagger-ui.html")
-//                .addResourceLocations("classpath:/META-INF/resources/");
-//        registry.addResourceHandler("/webjars/**")
-//                .addResourceLocations("classpath:/META-INF/resources/webjars/");
-    }
+public class SwaggerConfig {
 
     private static final String ADDRESS = "127.0.0.1";
 

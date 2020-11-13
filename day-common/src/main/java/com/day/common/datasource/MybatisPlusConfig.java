@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.Map;
         "com.day.*.persistence.mapper",
 }, annotationClass = Repository.class)
 @EnableEncryptableProperties
+@EnableTransactionManagement
 public class MybatisPlusConfig {
 
     @PostConstruct
