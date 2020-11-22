@@ -35,6 +35,22 @@ import java.net.URLEncoder;
 @RequestMapping("/today")
 public class TodayController {
     private static final Logger log = LoggerFactory.getLogger(TodayController.class);
+
+    @DubboReference(group = DubboNacosGroup.YESTERDAY_DUBBO_NACOS)
+    private YesterdayProvider yesterdayProvider;
+
+    @Autowired
+    private IOrderService orderService;
+
+    @ApiOperation(value = "测试分布式事务")
+    @RequestMapping(value = "testDistributedTransaction", method = RequestMethod.POST)
+    public JsonResult testDistributedTransaction() {
+        Order order = new Order();
+        order.setUserId("1001");
+        order.setAmount(300d);
+        return JsonResult.success(orderService.saveOrder(order));
+    }
+
     private static final int BUFFER = 1024 * 8;
 
     private void downloadFileByPath(String fileName, HttpServletResponse response) {
@@ -77,29 +93,10 @@ public class TodayController {
             }
         }
     }
-
-
-    @DubboReference(group = DubboNacosGroup.YESTERDAY_DUBBO_NACOS)
-    private YesterdayProvider yesterdayProvider;
-
-    @Autowired
-    private IOrderService orderService;
-
     @ApiOperation(value = "下载模板")
     @RequestMapping(value = "download", method = RequestMethod.POST)
     public String download(String name, HttpServletResponse response) {
         return yesterdayProvider.getYesterDayTime();
-    }
-
-
-
-    @ApiOperation(value = "测试分布式事务")
-    @RequestMapping(value = "testDistributedTransaction", method = RequestMethod.POST)
-    public JsonResult testDistributedTransaction() {
-        Order order = new Order();
-        order.setUserId("1001");
-        order.setAmount(300d);
-        return JsonResult.success(orderService.saveOrder(order));
     }
 
 
