@@ -1,4 +1,6 @@
 # days
+
+如果发现在clone代码时特别慢，推荐使用：https://gitclone.com/ 缓存加速
 ## v1.0
 实现了分布式事务管理功能
 
@@ -22,5 +24,6 @@ https://docs.spring.io/spring-cloud/docs/Hoxton.SR8/reference/html/
 选出了适合springboot2.3.3的springcloud版本：
 
 springcloud版本：Hoxton.SR8
+
 
 
