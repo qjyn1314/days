@@ -58,6 +58,32 @@
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>${jasypt.version}</version>
         </dependency>
+        <!--nacos-start-->
+        <!--服务注册中心-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <exclusions>
+                <!--
+                    为了解决此警告：No URLs will be polled as dynamic configuration sources.
+                    参考：https://blog.csdn.net/lizz861109/article/details/105488960
+                -->
+                <exclusion>
+                    <artifactId>spring-cloud-netflix-archaius</artifactId>
+                    <groupId>org.springframework.cloud</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>fastjson</artifactId>
+                    <groupId>com.alibaba</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--服务配置中心-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <!--nacos-end-->
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>

@@ -5,6 +5,7 @@ import com.day.api.provider.today.TodayProvider;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +28,7 @@ public class YesterDayController {
     private TodayProvider todayProvider;
 
     @ApiOperation(value = "获取当前日期")
-    @RequestMapping(value = "download", method = RequestMethod.POST)
+    @GetMapping(value = "download")
     public String download(String name, HttpServletResponse response) {
         return todayProvider.getTodayDataTime();
     }

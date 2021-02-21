@@ -13,6 +13,7 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>2.3.3.RELEASE</spring-boot.version>
+        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
         <dubbo.version>2.7.8</dubbo.version>
         <mybatis-plus.version>3.4.0</mybatis-plus.version>
@@ -25,6 +26,7 @@
 
     <modules>
         <module>day-parent</module>
+        <module>day-gateway</module>
         <module>day-common</module>
         <module>day-api</module>
         <module>day-yesterday</module>
@@ -37,10 +39,32 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
         <!--swagger-start-->
+        <!--访问地址：ip:port/swagger-ui/index.html-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
             <version>${swagger.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>swagger-annotations</artifactId>
+                    <groupId>io.swagger</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>swagger-models</artifactId>
+                    <groupId>io.swagger</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--  解决 Illegal DefaultValue null for parameter type integer    异常  -->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.21</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
+            <version>1.5.21</version>
         </dependency>
         <!--swagger-end-->
         <dependency>
@@ -56,6 +80,11 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.75</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -77,6 +106,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--spring cloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -3,8 +3,6 @@ package com.day.parent;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -18,11 +16,13 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 /**
  * <p>
- * explain:工程中的swagger文档配置
+ * explain:工程中单个服务的swagger文档配置
  * </p >
  *
  * @author wangjunming
@@ -31,7 +31,6 @@ import java.util.List;
 @Configuration
 @EnableOpenApi
 public class SwaggerConfig {
-
     private static final String ADDRESS = "127.0.0.1";
 
     @Bean
@@ -41,22 +40,28 @@ public class SwaggerConfig {
                 .in(ParameterType.HEADER).name("TOKEN").required(false)
                 .query(param -> param.model(model -> model.scalarModel(ScalarType.STRING)));
         pars.add(versionPar.build());
-        return new Docket(DocumentationType.OAS_30).host(ADDRESS)
+        // 支持的通讯协议集合
+        String[] protocols = {"https", "http"};
+        return new Docket(DocumentationType.OAS_30)
+                .pathMapping("/")
+                .host(ADDRESS)
                 .apiInfo(apiInfo())
                 .globalRequestParameters(pars)
                 .select()
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .protocols(new HashSet<>(Arrays.asList(protocols)));
     }
 
     private ApiInfo apiInfo() {
         String licenseUrl = "http://%s:%s/swagger-ui/index.html";
         final String port = DaysProperties.getPort();
+        licenseUrl = String.format(licenseUrl, ADDRESS, port);
         return new ApiInfoBuilder()
-                .title("DAYS~--RESTFUL APIS")
+                .title("CALM-GATEWAY-RESTFUL APIS")
                 .description("Mr.Wang~~搭建!!")
-                .licenseUrl(String.format(licenseUrl, ADDRESS, port))
+                .licenseUrl(licenseUrl)
                 .version("1.0")
                 .build();
     }

@@ -11,6 +11,7 @@ import org.apache.dubbo.config.annotation.DubboReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -94,7 +95,7 @@ public class TodayController {
         }
     }
     @ApiOperation(value = "下载模板")
-    @RequestMapping(value = "download", method = RequestMethod.POST)
+    @GetMapping(value = "download")
     public String download(String name, HttpServletResponse response) {
         return yesterdayProvider.getYesterDayTime();
     }
