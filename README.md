@@ -19,8 +19,8 @@ https://blog.csdn.net/qq_38046739/article/details/109951935
 根据spring的官网：
 https://docs.spring.io/spring-cloud/docs/Hoxton.SR8/reference/html/
 
-选出了适合springboot的版本：
+选出了适合springboot2.3.3的springcloud版本：
 
-Hoxton.SR8
+springcloud版本：Hoxton.SR8
 
 
