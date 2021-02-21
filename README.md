@@ -8,7 +8,7 @@
 
 springboot2.3.3 +nacos-1.3.2 +dubbo-2.7.8 +druid-1.1.22 +seata1.4.0 +mybatis-plus-3.4.0
 
-此工程的博文： 
+此工程v1.0的博文： 
 
 springboot集成dubbo2.7.8+nacos1.3.2+seata1.4.0 分布式事务解决demo
 
@@ -25,5 +25,10 @@ https://docs.spring.io/spring-cloud/docs/Hoxton.SR8/reference/html/
 
 springcloud版本：Hoxton.SR8
 
+此工程v2.0的博文：
+
+springboot-2.3.3+dubbo-2.7.8+nacos-1.3.2+gateway-Hoxton.SR8
+
+https://blog.csdn.net/qq_38046739/article/details/113921103
 
 
