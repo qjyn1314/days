@@ -1,4 +1,5 @@
 # days
+## v1.0
 实现了分布式事务管理功能
 
 使用的核心框架：
@@ -11,4 +12,15 @@ springboot集成dubbo2.7.8+nacos1.3.2+seata1.4.0 分布式事务解决demo
 
 https://blog.csdn.net/qq_38046739/article/details/109951935
 
-   
+## v2.0
+
+增加了springcloud gateway网关
+
+根据spring的官网：
+https://docs.spring.io/spring-cloud/docs/Hoxton.SR8/reference/html/
+
+选出了适合springboot的版本：
+
+Hoxton.SR8
+
+
