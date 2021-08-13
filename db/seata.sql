@@ -1,5 +1,5 @@
 -- 创建seata服务所需要的数据库：
-CREATE DATABASE `seata`;
+CREATE DATABASE if not exists `seata`;
 -- -------------------------------- The script used when storeMode is 'db' --------------------------------
 -- the table to store GlobalSession data
 CREATE TABLE IF NOT EXISTS `global_table`

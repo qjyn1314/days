@@ -1,7 +1,8 @@
 -- 创建seata服务所需要的数据库：
-CREATE DATABASE `seata`;
+CREATE DATABASE  IF NOT EXISTS  `seata`;
 -- -------------------------------- The script used when storeMode is 'db' --------------------------------
 -- the table to store GlobalSession data
+USE seata;
 CREATE TABLE IF NOT EXISTS `global_table`
 (
     `xid`                       VARCHAR(128) NOT NULL,
@@ -58,7 +59,8 @@ CREATE TABLE IF NOT EXISTS `lock_table`
   DEFAULT CHARSET = utf8;
 
 # 创建  seata_order 数据库
-CREATE DATABASE `seata_order`;
+CREATE DATABASE  IF NOT EXISTS  `seata_order`;
+USE seata_order;
 # 创建订单表
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -119,7 +121,8 @@ CREATE TABLE IF NOT EXISTS `undo_log`
   DEFAULT CHARSET = utf8 COMMENT ='AT transaction mode undo table';
 
 #创建 seata_pay 数据库
-CREATE DATABASE `seata_pay`;
+CREATE DATABASE  IF NOT EXISTS  `seata_pay`;
+USE seata_pay;
 #创建用户钱包表
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;

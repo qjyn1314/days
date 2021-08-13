@@ -1,5 +1,5 @@
 # 创建  seata_order 数据库
-CREATE DATABASE `seata_order`;
+CREATE DATABASE if not exists `seata_order`;
 # 创建订单表
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;

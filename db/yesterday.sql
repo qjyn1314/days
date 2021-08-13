@@ -1,5 +1,5 @@
 #创建 seata_pay 数据库
-CREATE DATABASE `seata_pay`;
+CREATE DATABASE if not exists `seata_pay`;
 #创建用户钱包表
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
