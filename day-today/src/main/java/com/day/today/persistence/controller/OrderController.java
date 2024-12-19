@@ -5,8 +5,8 @@ import com.day.common.base.JsonResult;
 import com.day.common.base.QueryRequest;
 import com.day.today.persistence.entity.Order;
 import com.day.today.persistence.service.IOrderService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-10-28 10:25:01
  */
 @Slf4j
-@Api(tags = "订单 Controller")
+@Tag(name = "订单 Controller")
 @RestController
 @RequestMapping("/order")
 public class OrderController extends BaseController {
@@ -32,25 +32,25 @@ public class OrderController extends BaseController {
     @Autowired
     private IOrderService service;
 
-    @ApiOperation("分页列表")
+    @Operation(description = "分页列表")
     @GetMapping("/page")
     public JsonResult page(QueryRequest queryRequest, Order order) {
         return JsonResult.success(getDataTable(service.page(queryRequest, order)));
     }
 
-    @ApiOperation("添加")
+    @Operation(description = "添加")
     @PostMapping("/save")
     public JsonResult save(Order order) {
         return JsonResult.success(service.save(order));
     }
 
-    @ApiOperation("修改")
+    @Operation(description = "修改")
     @PostMapping("/update")
     public JsonResult update(Order order) {
         return JsonResult.success(service.update(order));
     }
 
-    @ApiOperation("获取")
+    @Operation(description = "获取")
     @GetMapping("/selOne")
     public JsonResult selOne(Order order) {
         return JsonResult.success(service.selOne(order));

@@ -1,66 +1,65 @@
 package com.day.today.persistence.entity;
 
 
-import lombok.Data;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
 
 import java.io.Serializable;
 
 /**
- *  Entity
+ * Entity
  *
  * @author wangjunming
  * @date 2020-10-28 10:25:01
  */
 @Data
 @TableName("t_order")
-@ApiModel(value="Order对象", description="")
+@Schema(name = "Order对象", description = "")
 public class Order implements Serializable {
 
     /**
-     * 
+     *
      */
-    @ApiModelProperty(value = "")
+    @Schema(name = "")
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+
+    /**
+     *
+     */
+    @Schema(name = "")
     @TableField("amount")
     private Double amount;
 
     /**
-     * 
+     *
      */
-    @ApiModelProperty(value = "")
+    @Schema(name = "")
     @TableField("commodity_code")
     private String commodityCode;
 
     /**
      * 状态
      */
-    @ApiModelProperty(value = "")
+    @Schema(name = "")
     @TableField("status")
     private Integer status;
 
     /**
-     * 
+     *
      */
-    @ApiModelProperty(value = "")
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
-
-    /**
-     * 
-     */
-    @ApiModelProperty(value = "")
+    @Schema(name = "")
     @TableField("order_no")
     private String orderNo;
 
     /**
-     * 
+     *
      */
-    @ApiModelProperty(value = "")
+    @Schema(name = "")
     @TableField("user_id")
     private String userId;
 

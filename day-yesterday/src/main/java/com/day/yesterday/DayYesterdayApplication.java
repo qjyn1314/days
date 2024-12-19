@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDubbo
 @ComponentScan("com.day")
 @EnableAutoDataSourceProxy
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication
 public class DayYesterdayApplication {
 
     public static void main(String[] args) {

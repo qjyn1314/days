@@ -10,18 +10,25 @@
     <description>Days project for Spring Boot</description>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-boot.version>2.3.3.RELEASE</spring-boot.version>
-        <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
-        <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
-        <dubbo.version>2.7.8</dubbo.version>
-        <mybatis-plus.version>3.4.0</mybatis-plus.version>
-        <druid.version>1.1.22</druid.version>
-        <jasypt.version>3.0.3</jasypt.version>
-        <swagger.version>3.0.0</swagger.version>
-        <hutool.version>5.1.1</hutool.version>
-        <seata.version>1.4.0</seata.version>
+        <!-- 1-确定的是 cloud-alibaba 的版本号, 地址: https://sca.aliyun.com/docs/2023/overview/version-explain/  -->
+        <spring-cloud-alibaba.version>2023.0.3.2</spring-cloud-alibaba.version>
+        <!-- 2-确定的是 cloud 的版本号, 地址: https://docs.spring.io/spring-cloud-release/reference/2023.0/index.html  -->
+        <spring-cloud.version>2023.0.4</spring-cloud.version>
+        <!-- 3-确定的是 springboot 的版本号, 地址: https://docs.spring.io/spring-cloud-release/reference/2023.0/index.html -->
+        <spring-boot.version>3.2.12</spring-boot.version>
+        <!-- 4-确定的是 dubbo 的版本号, 在2024.12.16 使用最新的版本为: 3.3.2 -->
+        <dubbo.version>3.3.2</dubbo.version>
+        <!-- 5-确定的是 mybatis-plus 的版本号, 在2024.12.16 使用最新的版本为: 3.5.9 -->
+        <mybatis-plus.version>3.5.9</mybatis-plus.version>
+        <!-- 6-确定的是 druid 的版本号, 在2024.12.16 使用最新的版本为: 1.2.24 -->
+        <druid.version>1.2.24</druid.version>
+        <jasypt.version>3.0.5</jasypt.version>
+        <knife4j.version>4.5.0</knife4j.version>
+        <hutool.version>5.8.34</hutool.version>
+        <!-- 7-确定的是 seata 的版本号, 在2024.12.16 使用最新的版本为: 2.0.0 -->
+        <seata.version>2.0.0</seata.version>
     </properties>
 
     <modules>
@@ -37,36 +44,24 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <version>2.0.0</version>
         </dependency>
-        <!--swagger-start-->
-        <!--访问地址：ip:port/swagger-ui/index.html-->
+        <!--接口文档开始-->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>${swagger.version}</version>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
             <exclusions>
                 <exclusion>
-                    <artifactId>swagger-annotations</artifactId>
-                    <groupId>io.swagger</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>swagger-models</artifactId>
-                    <groupId>io.swagger</groupId>
+                    <groupId>org.webjars</groupId>
+                    <artifactId>swagger-ui</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--  解决 Illegal DefaultValue null for parameter type integer    异常  -->
         <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>1.5.21</version>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-models</artifactId>
-            <version>1.5.21</version>
-        </dependency>
-        <!--swagger-end-->
+        <!--接口文档结束-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -74,17 +69,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.75</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -125,6 +114,22 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--knife4j doc-->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-dependencies</artifactId>
+                <version>${knife4j.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--分布式调用框架-->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-bom</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!--seata-分布式事务管理-->
             <dependency>
                 <groupId>io.seata</groupId>
@@ -150,33 +155,70 @@
                 </includes>
             </resource>
         </resources>
-        <plugins>
-            <!-- 资源文件拷贝插件 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <!-- java编译插件 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <!-- 资源文件拷贝插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.1</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+                <!-- java编译插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.13.0</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.4.2</version>
+                    <configuration>
+                        <archive>
+                            <!-- 生成的jar中，包含pom.xml和pom.properties这两个文件 -->
+                            <addMavenDescriptor>true</addMavenDescriptor>
+                            <!-- 生成MANIFEST.MF的设置 -->
+                            <manifest>
+                                <!--这个属性特别关键，如果没有这个属性，有时候我们引用的包maven库
+                                下面可能会有多个包，并且只有一个是正确的，其余的可能是带时间戳的，
+                                此时会在classpath下面把那个带时间戳的给添加上去，
+                                然后我们 在依赖打包的时候，打的是正确的，所以两头会对不上，报错。 -->
+                                <useUniqueVersions>false</useUniqueVersions>
+                                <!-- 为依赖包添加路径, 这些路径会写在MANIFEST文件的Class-Path下 -->
+                                <addClasspath>true</addClasspath>
+                                <!-- 这个jar所依赖的jar包添加classPath的时候的前缀，如果这个jar本身
+                                和依赖包在同一级目录，则不需要添加 -->
+                                <classpathPrefix>lib/</classpathPrefix>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <configuration>
+                        <addResources>true</addResources>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
+
 
 </project>

@@ -18,7 +18,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("com.day")
 //seata分布式事务处理
 @EnableAutoDataSourceProxy
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootApplication
 public class DayTodayApplication {
 
     public static void main(String[] args) {

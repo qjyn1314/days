@@ -1,7 +1,7 @@
 package com.day.common.base;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 /**
  * 通用返回结果
@@ -9,19 +9,19 @@ import io.swagger.annotations.ApiModelProperty;
  * @author wangjunming
  * @since 2020/10/12 13:24
  */
-@ApiModel(description = "通用返回值对象")
+@Tag(name = "通用返回值对象", description = "通用返回值对象")
 public class JsonResult<R> {
 
-    @ApiModelProperty(value = "是否成功", example = "")
+    @Schema(description = "是否成功")
     private boolean success;
 
-    @ApiModelProperty(value = "是否成功的编码", example = "")
+    @Schema(description = "是否成功的编码", example = "")
     private int code;
 
-    @ApiModelProperty(value = "返回的错误信息", example = "")
+    @Schema(description = "返回的错误信息", example = "")
     private String msg;
 
-    @ApiModelProperty(value = "返回的数据", example = "")
+    @Schema(description = "返回的数据", example = "")
     private R data;
 
     private static <R> JsonResult<R> defaultSuccess() {

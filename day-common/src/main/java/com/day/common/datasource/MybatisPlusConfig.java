@@ -2,13 +2,13 @@ package com.day.common.datasource;
 
 import com.alibaba.druid.stat.DruidStatManagerFacade;
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 

@@ -121,7 +121,7 @@ public class AccountServiceImpl implements IAccountService {
         final double amountPoor = selOneAccount.getAmount() - account.getAmount();
         selOneAccount.setAmount(amountPoor);
         final boolean update = accountMapper.updateById(selOneAccount) > 0;
-        int i = 12/0;
+//        int i = 12/0;
         return update ? selOneAccount : null;
     }
 

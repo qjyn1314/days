@@ -1,12 +1,11 @@
 package com.day.parent;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 
 /**
  * <p>
@@ -17,7 +16,6 @@ import javax.annotation.PostConstruct;
  * @since 2020/8/27 10:26
  */
 @Component
-@DependsOn("springContextHolder")
 @ConfigurationProperties(prefix = "days")
 public class DaysProperties {
 
