@@ -31,6 +31,9 @@ springboot-2.3.3+dubbo-2.7.8+nacos-1.3.2+gateway-Hoxton.SR8
 
 https://blog.csdn.net/qq_38046739/article/details/113921103
 
+## v3.0
+
+此处不再做介绍
 
 ## v4.0
 
@@ -87,6 +90,8 @@ https://blog.csdn.net/qq_38046739/article/details/113921103
 
 
 ### 博客地址:
+
+待完善
 
 
 ### nacos-2.4.3 服务注册列表
