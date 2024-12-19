@@ -32,7 +32,7 @@ springboot-2.3.3+dubbo-2.7.8+nacos-1.3.2+gateway-Hoxton.SR8
 https://blog.csdn.net/qq_38046739/article/details/113921103
 
 
-## v3.0
+## v4.0
 
 ### 版本升级
 
@@ -81,9 +81,9 @@ https://blog.csdn.net/qq_38046739/article/details/113921103
 
 ### v4版本的初始化sql
 
-参考: [db_v3](db_v4) 文件夹
+参考: [db_v4](db_v4) 文件夹
 
-[days_v3_all.sql](db_v4/days_v3_all.sql) 文件
+[days_v4_all.sql](db_v4/days_v4_all.sql) 文件
 
 
 ### 博客地址:
@@ -183,18 +183,6 @@ service.disableGlobalTransaction=false
 2. 进行控制是否启用seata事务管理器
 
 > seata.enabled=true
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
